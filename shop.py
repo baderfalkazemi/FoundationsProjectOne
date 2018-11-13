@@ -6,7 +6,7 @@ menu = {
     "tea": 0.900,
     "bottled water": 0.750
 }
-original_flavors = ["vanilla", "chocolate", "strawberry", "caramel", "raspberry"]
+original_flavors = ["vanilla", "chocolate", "strawberry", "caramel", "rasberry"]
 original_price = 2
 signature_price = 2.750
 
@@ -93,11 +93,15 @@ def get_total_price(order_list):
     """
     total = 0
     # your code goes here!
+    """
     for pricing in order_list:
         for prices in master_menu:
             if pricing == prices:
                 total = total + master_menu[prices]
 
+    """
+    for order in order_list:
+        total = total + master_menu[order]
     return total
 
 
@@ -108,10 +112,11 @@ def print_order(order_list):
     print()
     print("Your order is: ")
     # your code goes here!
-    print(order_list)
+    for orders in order_list:
+        print('- %s' % (orders))
     total = get_total_price(order_list)
     print("The total price of your order is %s KD." % total)
-    if accept_credit_card == True:
+    if accept_credit_card(total) == True:
         print("You can pay by cash or credit card.")
     else:
         print("please pay by cash, since we can't accept credit cards for any order of less than 5 KD.")
